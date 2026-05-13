@@ -119,13 +119,17 @@ productSchema.virtual('availableQty').get(function () {
 });
 
 // ── Auto-status update ────────────────────────────────────────────────────────
-productSchema.pre('save', function (next) {
-  if (this.stockQty === 0)                    this.status = 'out_of_stock';
-  else if (this.stockQty <= this.minimumStock) { this.status = 'low_stock'; this.isLowStock = true; }
-  else if (this.status === 'out_of_stock' || this.status === 'low_stock') {
-    this.status = 'active'; this.isLowStock = false;
+productSchema.pre('save', function () {
+  if (this.stockQty === 0) {
+    this.status = 'out_of_stock';
+    this.isLowStock = false;
+  } else if (this.stockQty <= this.minimumStock) {
+    this.status = 'low_stock';
+    this.isLowStock = true;
+  } else if (this.status === 'out_of_stock' || this.status === 'low_stock') {
+    this.status = 'active';
+    this.isLowStock = false;
   }
-  next();
 });
 
 // ── Indexes for 50k+ products ─────────────────────────────────────────────────

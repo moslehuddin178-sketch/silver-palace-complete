@@ -45,3 +45,12 @@ export const saleAPI = {
   return:     (id, data)=> client.post(`/sales/${id}/return`, data),
   dailyReport:(params)  => client.get('/sales/report/daily', { params }),
 };
+
+
+// ── Payments ──────────────────────────────────────────────────────────────────
+export const paymentAPI = {
+  getConfig:    ()         => client.get('/payments/config'),
+  createIntent: (data)     => client.post('/payments/create-intent', data),
+  verifyIntent: (intentId) => client.get(`/payments/verify/${intentId}`),
+  refund:       (data)     => client.post('/payments/refund', data),
+};
