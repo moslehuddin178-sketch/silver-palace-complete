@@ -2,13 +2,14 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 
 const NAV = [
-  { to:'/dashboard',  icon:'📊', label:'Dashboard' },
-  { to:'/pos',        icon:'🛒', label:'POS Terminal' },
-  { to:'/products',   icon:'💍', label:'Products' },
-  { to:'/customers',  icon:'👥', label:'Customers' },
-  { to:'/sales',      icon:'🧾', label:'Sales' },
-  { to:'/reports',    icon:'📈', label:'Reports' },
-  { to:'/settings',   icon:'⚙️',  label:'Settings' },
+  { to:'/dashboard',  icon:'📊', label:'Dashboard'    },
+  { to:'/pos',        icon:'🛒', label:'POS Terminal'  },
+  { to:'/products',   icon:'💍', label:'Products'      },
+  { to:'/customers',  icon:'👥', label:'Customers'     },
+  { to:'/sales',      icon:'🧾', label:'Sales'         },
+  { to:'/reports',    icon:'📈', label:'Reports'       },
+  { to:'/ai',         icon:'🤖', label:'AI Assistant'  },
+  { to:'/settings',   icon:'⚙️',  label:'Settings'      },
 ];
 
 const ROLE_COLOR = {
@@ -46,6 +47,9 @@ export default function Sidebar() {
             className={({ isActive }) => isActive ? 'sidebar-active' : 'sidebar-item'}>
             <span className="text-base">{icon}</span>
             <span>{label}</span>
+            {to === '/ai' && (
+              <span className="ml-auto text-xs bg-purple-500 text-white px-1.5 py-0.5 rounded-full font-medium">AI</span>
+            )}
           </NavLink>
         ))}
       </nav>

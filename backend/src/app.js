@@ -9,6 +9,7 @@ app.use(express.urlencoded({ extended: true }));
 const { authRouter, silverRouter, productRouter, customerRouter } = require('./routes/index');
 const saleRouter    = require('./routes/saleRoutes');
 const paymentRouter = require('./routes/paymentRoutes');
+const aiRouter      = require('./routes/AiRoutes');
 
 app.use('/api/auth',      authRouter);
 app.use('/api/silver',    silverRouter);
@@ -16,6 +17,7 @@ app.use('/api/products',  productRouter);
 app.use('/api/customers', customerRouter);
 app.use('/api/sales',     saleRouter);
 app.use('/api/payments',  paymentRouter);
+app.use('/api/ai',        aiRouter);
 
 app.get('/', (req, res) =>
   res.json({ success: true, message: '💍 Silver Jewelry API running', version: '1.0.0' })

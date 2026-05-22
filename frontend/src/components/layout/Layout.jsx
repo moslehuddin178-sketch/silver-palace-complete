@@ -1,5 +1,6 @@
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
+import ChatbotWidget from '../ui/ChatbotWidget';
 
 export default function Layout({ children }) {
   return (
@@ -11,6 +12,7 @@ export default function Layout({ children }) {
           {children}
         </main>
       </div>
+      <ChatbotWidget />
     </div>
   );
 }
