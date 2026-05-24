@@ -10,6 +10,7 @@ const { authRouter, silverRouter, productRouter, customerRouter } = require('./r
 const saleRouter    = require('./routes/saleRoutes');
 const paymentRouter = require('./routes/paymentRoutes');
 const aiRouter      = require('./routes/AiRoutes');
+const weatherRouter = require('./routes/weatherRoutes');
 
 app.use('/api/auth',      authRouter);
 app.use('/api/silver',    silverRouter);
@@ -18,6 +19,7 @@ app.use('/api/customers', customerRouter);
 app.use('/api/sales',     saleRouter);
 app.use('/api/payments',  paymentRouter);
 app.use('/api/ai',        aiRouter);
+app.use('/api/weather',   weatherRouter);
 
 app.get('/', (req, res) =>
   res.json({ success: true, message: '💍 Silver Jewelry API running', version: '1.0.0' })

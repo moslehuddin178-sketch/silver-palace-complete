@@ -21,7 +21,8 @@
     "mongoose": "^9.6.2",
     "qrcode": "^1.5.4",
     "slugify": "^1.6.9",
-    "stripe": "^22.1.1"
+    "stripe": "^22.1.1",
+     "axios": "^1.6.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.14"

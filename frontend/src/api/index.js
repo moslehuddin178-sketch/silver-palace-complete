@@ -80,3 +80,10 @@ export const aiAPI = {
   describe:  (data) => client.post('/ai/describe', data),
   insights:  (data) => client.post('/ai/insights', data),
 };
+
+// ── Weather ───────────────────────────────────────────────────────────────────
+export const weatherAPI = {
+  getCurrent:  (city) => client.get('/weather',          { params: city ? { city } : {} }),
+  getForecast: (city) => client.get('/weather/forecast', { params: city ? { city } : {} }),
+  clearCache:  ()     => client.delete('/weather/cache'),
+};

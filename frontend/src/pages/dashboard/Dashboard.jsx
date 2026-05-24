@@ -4,6 +4,7 @@ import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, LineChart, L
 import { productAPI, saleAPI, silverAPI } from '../../api';
 import { StatCard, Spinner, StatusBadge } from '../../components/ui';
 import { useAuth } from '../../context/AuthContext';
+import WeatherWidget from '../../components/ui/weatherWidget';
 
 export default function Dashboard() {
   const { user } = useAuth();
@@ -73,6 +74,10 @@ export default function Dashboard() {
         <StatCard title="Total Products"   value={overview.totalProducts || 0}    sub={`${overview.lowStockCount || 0} low stock`} icon="💍" color="blue"   />
         <StatCard title="Out of Stock"     value={overview.outOfStockCount || 0}  sub="items need restocking"           icon="⚠️"  color="red"    />
       </div>
+
+     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <WeatherWidget />
+     </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Category chart */}

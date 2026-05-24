@@ -1,15 +1,19 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { silverAPI } from '../../api';
+import { WeatherTicker } from '../ui/weatherWidget';
 
 const TITLES = {
-  '/dashboard':'/dashboard',
-  '/pos':'POS Terminal',
-  '/products':'Products',
-  '/customers':'Customers',
-  '/sales':'Sales',
-  '/reports':'Reports',
-  '/settings':'Settings',
+  '/dashboard': 'Dashboard',
+  '/pos':       'POS Terminal',
+  '/products':  'Products',
+  '/customers': 'Customers',
+  '/suppliers': 'Suppliers',
+  '/sales':     'Sales',
+  '/expenses':  'Expenses',
+  '/reports':   'Reports',
+  '/ai':        'AI Assistant',
+  '/settings':  'Settings',
 };
 
 export default function Topbar() {
@@ -18,14 +22,19 @@ export default function Topbar() {
   const title = Object.entries(TITLES).find(([k]) => location.pathname.startsWith(k))?.[1] || 'Dashboard';
 
   useEffect(() => {
-    silverAPI.getActive().then(r => setSilverPrice(r.data.data?.gramPrice || null)).catch(() => {});
+    silverAPI.getActive()
+      .then(r => setSilverPrice(r.data.data?.gramPrice || null))
+      .catch(() => {});
   }, []);
 
   return (
-    <header className="h-14 bg-white border-b flex items-center px-6 gap-4 sticky top-0 z-20">
+    <header className="h-14 bg-white border-b flex items-center px-6 gap-3 sticky top-0 z-20">
       <h2 className="text-sm font-semibold text-gray-700 flex-1">
         {location.pathname === '/dashboard' ? '📊 Dashboard' : `💍 ${title}`}
       </h2>
+
+      {/* Weather ticker */}
+      <WeatherTicker />
 
       {/* Silver price ticker */}
       {silverPrice && (
