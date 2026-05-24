@@ -20,7 +20,7 @@ const getClient = () => {
 const getCurrentWeather = async (req, res) => {
   try {
     const apiKey = getClient();
-    const city   = req.query.city || process.env.SHOP_CITY || 'Istanbul';
+    const city   = req.query.city || process.env.SHOP_CITY || 'Tampere';
 
     // Return cached data if still fresh and same city
     if (
