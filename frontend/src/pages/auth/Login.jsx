@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { authAPI } from '../../api';
 import { useAuth } from '../../context/AuthContext';
 import { Spinner } from '../../components/ui';
+import { useNavigate, Link } from 'react-router-dom';
 
 export default function Login() {
   const [tab,  setTab]  = useState('signin');
@@ -66,6 +66,7 @@ export default function Login() {
           <div className="mb-8">
             <h2 className="text-white text-2xl font-bold">{tab === 'signin' ? 'Welcome back' : 'Create account'}</h2>
             <p className="text-slate-400 text-sm mt-1">{tab === 'signin' ? 'Sign in to your account' : 'Fill in your details below'}</p>
+
           </div>
 
           {/* Tabs */}
@@ -91,11 +92,20 @@ export default function Login() {
               <input name="email" type="email" value={form.email} onChange={handle} placeholder="you@company.com"
                 className="w-full bg-slate-700 border border-white/10 text-white rounded-lg px-3 py-2.5 text-sm placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500" />
             </div>
-            <div>
-              <label className="block text-xs font-medium text-slate-400 mb-1.5 uppercase tracking-wide">Password</label>
-              <input name="password" type="password" value={form.password} onChange={handle} placeholder="Min 6 characters"
-                className="w-full bg-slate-700 border border-white/10 text-white rounded-lg px-3 py-2.5 text-sm placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500" />
-            </div>
+           <div>
+  <label className="block text-xs font-medium text-slate-400 mb-1.5 uppercase tracking-wide">Password</label>
+
+  {tab === 'signin' && (
+    <div className="text-right mb-2">
+      <Link to="/forgot-password" className="text-xs text-amber-400 hover:text-amber-300 transition-colors">
+        Forgot password?
+      </Link>
+    </div>
+  )}
+
+  <input name="password" type="password" value={form.password} onChange={handle} placeholder="Min 6 characters"
+    className="w-full bg-slate-700 border border-white/10 text-white rounded-lg px-3 py-2.5 text-sm placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500" />
+</div>
             {tab === 'signup' && (
               <div>
                 <label className="block text-xs font-medium text-slate-400 mb-1.5 uppercase tracking-wide">Role</label>

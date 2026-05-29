@@ -2,9 +2,12 @@ import client from './client';
 
 // ── Auth ──────────────────────────────────────────────────────────────────────
 export const authAPI = {
-  signup: (data) => client.post('/auth/signup', data),
-  signin: (data) => client.post('/auth/signin', data),
-  me:     ()     => client.get('/auth/me'),
+  signup:           (data)  => client.post('/auth/signup', data),
+  signin:           (data)  => client.post('/auth/signin', data),
+  me:               ()      => client.get('/auth/me'),
+  forgotPassword:   (data)  => client.post('/auth/forgot-password', data),
+  verifyResetToken: (token) => client.get(`/auth/reset-password/${token}`),
+  resetPassword:    (token, data) => client.post(`/auth/reset-password/${token}`, data),
 };
 
 // ── Silver Price ──────────────────────────────────────────────────────────────

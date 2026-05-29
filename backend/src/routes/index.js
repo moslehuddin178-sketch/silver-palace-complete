@@ -3,7 +3,7 @@ const { body } = require('express-validator');
 const { protect, authorize } = require('../middlewares/authMiddleware');
 
 // ── Auth ──────────────────────────────────────────────────────────────────────
-const { signup, signin, getMe } = require('../controllers/authController');
+const { signup, signin, getMe,forgotPassword, verifyResetToken, resetPassword } = require('../controllers/authController');
 const authRouter = express.Router();
 
 authRouter.post('/signup', [
@@ -18,7 +18,12 @@ authRouter.post('/signin', [
   body('password').notEmpty(),
 ], signin);
 
+
 authRouter.get('/me', protect, getMe);
+
+authRouter.post('/forgot-password', forgotPassword);
+authRouter.get('/reset-password/verify/:token', verifyResetToken);
+authRouter.post('/reset-password/:token', resetPassword);
 
 // ── Silver Price ──────────────────────────────────────────────────────────────
 const { setPrice, getActive, getHistory, previewProductPrice } = require('../controllers/silverPriceController');

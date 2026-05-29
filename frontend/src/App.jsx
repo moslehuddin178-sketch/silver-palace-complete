@@ -12,6 +12,8 @@ import Sales       from './pages/sales/Sales';
 import Reports     from './pages/reports/Reports';
 import Settings    from './pages/settings/Settings';
 import AIAssistant from './pages/ai/AIAssistant';
+import ForgotPassword from './pages/auth/forgotPassword';
+import ResetPassword  from './pages/auth/resetPassword';
 
 function ProtectedRoute({ children }) {
   const { user, loading } = useAuth();
@@ -43,6 +45,8 @@ export default function App() {
           <Route path="/settings"  element={<ProtectedRoute><Settings    /></ProtectedRoute>} />
           <Route path="/ai"        element={<ProtectedRoute><AIAssistant /></ProtectedRoute>} />
           <Route path="*"          element={<Navigate to="/dashboard" replace />} />
+          <Route path="/forgot-password"      element={<PublicRoute><ForgotPassword /></PublicRoute>} />
+          <Route path="/reset-password/:token" element={<PublicRoute><ResetPassword  /></PublicRoute>} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

@@ -40,6 +40,15 @@ services:
       SHOP_CURRENCY: ${SHOP_CURRENCY:-USD}
       SHOP_TAX_RATE: ${SHOP_TAX_RATE:-0.08}
       SILVER_GRAM_PRICE: ${SILVER_GRAM_PRICE:-0.85}
+      CLIENT_URL: ${CLIENT_URL:-http://localhost}
+      EMAIL_HOST: ${EMAIL_HOST:-smtp.gmail.com}
+      EMAIL_PORT: ${EMAIL_PORT:-587}
+      EMAIL_USER: ${EMAIL_USER:-your@gmail.com}
+      EMAIL_PASS: ${EMAIL_PASS:-your_gmail_app_password}
+      EMAIL_FROM: ${EMAIL_FROM:-Silver Palace <your@gmail.com>}
+      ME_USER: ${ME_USER:-dbadmin}
+      ME_PASS: ${ME_PASS:-dbpass123}S
+
     depends_on:
       mongo:
         condition: service_healthy
